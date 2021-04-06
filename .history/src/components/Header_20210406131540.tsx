@@ -4,6 +4,7 @@ import {
   RiNotificationLine,
   RiUserAddLine,
 } from "react-icons/ri";
+import { Profile } from "./Header/Profile";
 
 export function Header() {
   return (
@@ -64,17 +65,8 @@ export function Header() {
           <Icon as={RiNotificationLine} fontSize="20" />
           <Icon as={RiUserAddLine} fontSize="20" />
         </HStack>
-        
-        <Flex align="center">
-          <Box mr="4" textAlign="right">
-            <Text>Victoria Ferreira</Text>
-            <Text color="gray.300" fontSize="small">victoria@gmail.com</Text>
-          </Box>
-
-          <Avatar size="md" name="Victoria Ferreira" src="https://img.estadao.com.br/thumbs/640/resources/jpg/8/5/1540830821858.jpg">
-
-          </Avatar>
-        </Flex>
+      
+          <Profile />
       </Flex>
     </Flex>
   );
