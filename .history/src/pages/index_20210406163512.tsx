@@ -13,15 +13,8 @@ type SignInFormData = {
   password: string;
 };
 
-const signInFormSchema = yup.object().shape({
-  email: yup.string().email('E-mail inválido').required('E-mail obrigatório'),
-  password: yup.string().required('Senha obrigatória'),
-});
-
 export default function Home() {
-  const { register, handleSubmit, formState } = useForm<SignInFormData>({
-    resolver: yupResolver(signInFormSchema),
-  });
+  const { register, handleSubmit, formState} = useForm();
 
   const router = useRouter();
 
