@@ -51,17 +51,17 @@ export default function UserList() {
           <Table colorScheme="whiteAlpha">
             <Thead>
               <Tr>
-                <Th px={["4", "4", "6"]} color="gray.300" with="8">
+                <Th px="6" color="gray.300" with="8">
                   <Checkbox colorScheme="pink" />
                 </Th>
                 <Th>Usuário</Th>
                {isWideVersion &&  <Th>Data de Cadastro</Th>}
-                {isWideVersion && <Th w="8">Editar</Th>}
+                <Th w="8">Editar</Th>
               </Tr>
             </Thead>
             <Tbody>
               <Tr>
-                <Td px={["4", "4", "6"]}>
+                <Td px="6">
                   <Checkbox colorScheme="pink" />
                 </Td>
                 <Td>
@@ -74,17 +74,16 @@ export default function UserList() {
                 </Td>
   {isWideVersion && <Td>04 de abril, 2021</Td> }
                 <Td>
-                {isWideVersion && (
-                    <Button
-                      as="a"
-                      size="sm"
-                      fontSize="sm"
-                      colorScheme="purple"
-                      leftIcon={<Icon as={RiPencilLine} fontSize="16" />}
-                    >
-                      Editar
-                    </Button>
-                  )}
+                  <Button
+                    as="a"
+                    size="sm"
+                    fontSize="sm"
+                    colorScheme="purple"
+                    leftIcon={<Icon as={RiPencilLine} fontSize="16" />}
+                    cursor="pointer"
+                  >
+                    Editar
+                  </Button>
                 </Td>
               </Tr>
             </Tbody>

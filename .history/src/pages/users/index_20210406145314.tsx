@@ -51,17 +51,17 @@ export default function UserList() {
           <Table colorScheme="whiteAlpha">
             <Thead>
               <Tr>
-                <Th px={["4", "4", "6"]} color="gray.300" with="8">
+                <Th px="6" color="gray.300" with="8">
                   <Checkbox colorScheme="pink" />
                 </Th>
                 <Th>Usuário</Th>
                {isWideVersion &&  <Th>Data de Cadastro</Th>}
-                {isWideVersion && <Th w="8">Editar</Th>}
+                <Th w="8">Editar</Th>
               </Tr>
             </Thead>
             <Tbody>
               <Tr>
-                <Td px={["4", "4", "6"]}>
+                <Td px="6">
                   <Checkbox colorScheme="pink" />
                 </Td>
                 <Td>
