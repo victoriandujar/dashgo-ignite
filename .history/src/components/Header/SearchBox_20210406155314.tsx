@@ -5,8 +5,6 @@ import { useState, useRef } from "react";
 export function SearchBox() {
   const searchInputRef = useRef<HTMLInputElement>(null);
 
-  
-
     return(
         <Flex
         as="label"
