@@ -4,7 +4,7 @@ interface ProfileProps {
   showProfileData?: boolean;
 }
 
-export function Profile({ showProfileData = true }: ProfileProps) {
+export function Profile({ showProfileData }: ProfileProps) {
   return (
     <Flex align="center">
       {showProfileData && (

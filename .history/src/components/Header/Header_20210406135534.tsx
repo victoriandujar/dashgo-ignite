@@ -7,8 +7,8 @@ import { Logo } from "./Logo";
 export function Header() {
   const isWideVersion = useBreakpointValue({
     base: false,
-    lg: true,
-  });
+lg: true,
+  })
 
   return (
     <Flex
@@ -23,7 +23,7 @@ export function Header() {
     >
       <Logo />
 
-      {isWideVersion && <SearchBox />}
+      <SearchBox />
 
       <Flex align="center" ml="auto">
         <NotificationsNav />
