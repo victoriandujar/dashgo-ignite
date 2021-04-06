@@ -19,13 +19,12 @@ import { Header } from "../../components/Header/Header";
 import { Sidebar } from "../../components/Sidebar/Sidebar";
 import { RiAddLine, RiPencilLine } from "react-icons/ri";
 import { Pagination } from "../../components/Pagination/Pagination";
-import Link from "next/link";
 
 export default function UserList() {
   const isWideVersion = useBreakpointValue({
     base: false,
     lg: true,
-  });
+  })
 
   return (
     <Box>
@@ -38,18 +37,16 @@ export default function UserList() {
             <Heading size="lg" fontWeight="normal">
               Usuários
             </Heading>
-            <Link href="/users/create" passHref>
-              <Button
-                as="a"
-                size="sm"
-                fontSize="sm"
-                colorScheme="pink"
-                leftIcon={<Icon as={RiAddLine} fontSize="20" />}
-                cursor="pointer"
-              >
-                Criar novo
-              </Button>
-            </Link>
+            <Button
+              as="a"
+              size="sm"
+              fontSize="sm"
+              colorScheme="pink"
+              leftIcon={<Icon as={RiAddLine} fontSize="20" />}
+              cursor="pointer"
+            >
+              Criar novo
+            </Button>
           </Flex>
           <Table colorScheme="whiteAlpha">
             <Thead>
@@ -58,7 +55,7 @@ export default function UserList() {
                   <Checkbox colorScheme="pink" />
                 </Th>
                 <Th>Usuário</Th>
-                {isWideVersion && <Th>Data de Cadastro</Th>}
+               {isWideVersion &&  <Th>Data de Cadastro</Th>}
                 {isWideVersion && <Th w="8">Editar</Th>}
               </Tr>
             </Thead>
@@ -75,9 +72,9 @@ export default function UserList() {
                     </Text>
                   </Box>
                 </Td>
-                {isWideVersion && <Td>04 de abril, 2021</Td>}
+  {isWideVersion && <Td>04 de abril, 2021</Td> }
                 <Td>
-                  {isWideVersion && (
+                {isWideVersion && (
                     <Button
                       as="a"
                       size="sm"
