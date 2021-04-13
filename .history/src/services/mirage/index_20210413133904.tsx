@@ -28,8 +28,8 @@ export function makeServer() {
       }),
     },
 
-    seeds(server) {
-      server.createList("user", 200);
+    seeds(server){
+        server.createList('user', 200);
     },
 
     routes() {
