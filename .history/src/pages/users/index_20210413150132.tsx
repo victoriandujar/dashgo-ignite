@@ -14,43 +14,47 @@ import {
   Text,
   useBreakpointValue,
   Spinner,
-  Link,
 } from "@chakra-ui/react";
 
 import { Header } from "../../components/Header/Header";
 import { Sidebar } from "../../components/Sidebar/Sidebar";
 import { RiAddLine, RiPencilLine } from "react-icons/ri";
 import { Pagination } from "../../components/Pagination/Pagination";
-import NextLink from "next/link";
+import Link from "next/link";
 
-import { useUsers } from "../../services/hooks/useUsers";
-import { useState } from "react";
-import { queryClient } from "../../services/queryClient";
+import { useQuery } from "react-query";
 import { api } from "../../services/api";
 
 export default function UserList() {
-  const [page, setPage] = useState(1);
+  const { data, isLoading, isFetching, error } = useQuery(
+    "users",
+    async () => {
+      const { data } = await api.get("/users");
 
-  const { data, isLoading, isFetching, error } = useUsers(page);
+      const users = data.users.map((user) => {
+        return {
+          id: user.id,
+          name: user.name,
+          email: user.email,
+          createdAt: new Date(user.createdAt).toLocaleDateString("pt-BR", {
+            day: "2-digit",
+            month: "long",
+            year: "numeric",
+          }),
+        };
+      });
+
+      return users;
+    },
+    {
+      staleTime: 100 * 5,
+    }
+  );
 
   const isWideVersion = useBreakpointValue({
     base: false,
     lg: true,
   });
-
-  async function handlePrefetchUser(userId: string) {
-    await queryClient.prefetchQuery(
-      ["user", userId],
-      async () => {
-        const response = await api.get(`/users/${userId}`);
-
-        return response.data;
-      },
-      {
-        staleTime: 1000 * 60 * 10,
-      }
-    );
-  }
 
   return (
     <Box>
@@ -66,7 +70,7 @@ export default function UserList() {
                 <Spinner size="sm" color="gray.500" ml="4" />
               )}
             </Heading>
-            <NextLink href="/users/create" passHref>
+            <Link href="/users/create" passHref>
               <Button
                 as="a"
                 size="sm"
@@ -77,7 +81,7 @@ export default function UserList() {
               >
                 Criar novo
               </Button>
-            </NextLink>
+            </Link>
           </Flex>
 
           {isLoading ? (
@@ -102,19 +106,14 @@ export default function UserList() {
                   </Tr>
                 </Thead>
                 <Tbody>
-                  {data.users.map((user) => (
+                  {data.map((user) => (
                     <Tr key={user.id}>
                       <Td paddingX={["4", "4", "6"]}>
                         <Checkbox colorScheme="pink" />
                       </Td>
                       <Td>
                         <Box>
-                          <Link
-                            color="purple.400"
-                            onMouseEnter={() => handlePrefetchUser(user.id)}
-                          >
-                            <Text fontWeight="bold">{user.name}</Text>
-                          </Link>
+                          <Text fontWeight="bold">{user.name}</Text>
 
                           <Text fontSize="sm" color="gray.300">
                             {user.email}
@@ -140,11 +139,7 @@ export default function UserList() {
                 </Tbody>
               </Table>
 
-              <Pagination
-                totalCountOfRegisters={data.totalCount}
-                currentPage={page}
-                onPageChange={setPage}
-              />
+              <Pagination />
             </>
           )}
         </Box>
