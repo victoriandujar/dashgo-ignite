@@ -54,7 +54,7 @@ export function Pagination({
       <Stack direction="row" spacing="2">
         {currentPage > 1 + siblingsCount && (
           <>
-            <PaginationItem onPageChange={onPageChange} number={1} />
+            <PaginationItem number={1} />
             {currentPage > 2 + siblingsCount && (
               <Text color="gray.300" width="6" textAlign="center">
                 ...

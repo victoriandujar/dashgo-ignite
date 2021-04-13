@@ -28,7 +28,7 @@ import { useState } from "react";
 export default function UserList() {
   const [page, setPage] = useState(1);
 
-  const { data, isLoading, isFetching, error } = useUsers(page);
+  const { data, isLoading, isFetching, error } = useUsers();
 
   const isWideVersion = useBreakpointValue({
     base: false,
@@ -85,7 +85,7 @@ export default function UserList() {
                   </Tr>
                 </Thead>
                 <Tbody>
-                  {data.users.map((user) => (
+                  {data.map((user) => (
                     <Tr key={user.id}>
                       <Td paddingX={["4", "4", "6"]}>
                         <Checkbox colorScheme="pink" />
@@ -119,7 +119,7 @@ export default function UserList() {
               </Table>
 
               <Pagination
-              totalCountOfRegisters = {data.totalCount}
+              totalCountOfRegisters = {200}
               currentPage = {page}
               onPageChange = {setPage} />
             </>
