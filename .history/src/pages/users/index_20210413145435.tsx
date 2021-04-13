@@ -62,7 +62,7 @@ export default function UserList() {
           <Flex mb="8" justify="space-between" align="center">
             <Heading size="lg" fontWeight="normal">
               Usuários
-              { !isLoading && isFetching && <Spinner size="sm" color="gray.500" ml="4"/>}
+              { !isLoading && isFetching && <Spinner size="sm" color="gray.500" ml="4"/>
             </Heading>
             <Link href="/users/create" passHref>
               <Button
