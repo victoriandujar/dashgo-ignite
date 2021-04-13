@@ -16,20 +16,20 @@ export function makeServer() {
 
     factories: {
       user: Factory.extend({
-        name(i: number) {
-          return `User ${i + 1}`;
+        name() {
+          return faker.name.findName();
         },
         email() {
-          return faker.internet.email().toLowerCase();
+          return faker.internet.email().toLocaleLowerCase();
         },
-        createdAt() {
+        created_at() {
           return faker.date.recent(10);
         },
       }),
     },
 
     seeds(server) {
-      server.createList("user", 10);
+      server.createList('user', 20);
     },
 
     routes() {
