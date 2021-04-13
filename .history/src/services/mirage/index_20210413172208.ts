@@ -11,7 +11,7 @@ type User = {
 export function makeServer() {
   const server = createServer({
     serializers: {
-      application: ActiveModelSerializer,
+      application: ActiveModelSerializer
     },
 
     models: {
