@@ -38,18 +38,14 @@ export default function UserList() {
     lg: true,
   });
 
-  async function handlePrefetchUser(userId: string) {
-    await queryClient.prefetchQuery(
-      ["user", userId],
-      async () => {
-        const response = await api.get(`/users/${userId}`);
+  async function handlePrefetchUser(userId: number) {
+    await queryClient.prefetchQuery(['user', userId], async () => {
+      const response = await api.get(`/users/${userId}`)
 
-        return response.data;
-      },
-      {
-        staleTime: 1000 * 60 * 10,
-      }
-    );
+      return response.data;
+    }, {
+      staleTime: 1000 * 60 * 10,
+    });
   }
 
   return (
@@ -109,10 +105,7 @@ export default function UserList() {
                       </Td>
                       <Td>
                         <Box>
-                          <Link
-                            color="purple.400"
-                            onMouseEnter={() => handlePrefetchUser(user.id)}
-                          >
+                          <Link color="purple.400" onMouseEnter={() => handlePrefetchUser(user.id)}>
                             <Text fontWeight="bold">{user.name}</Text>
                           </Link>
 
@@ -141,10 +134,9 @@ export default function UserList() {
               </Table>
 
               <Pagination
-                totalCountOfRegisters={data.totalCount}
-                currentPage={page}
-                onPageChange={setPage}
-              />
+              totalCountOfRegisters = {data.totalCount}
+              currentPage = {page}
+              onPageChange = {setPage} />
             </>
           )}
         </Box>
